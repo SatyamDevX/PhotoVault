@@ -1,15 +1,19 @@
-from flask import Flask
+from flask import Flask, render_template
 
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def home():
-   return "basic flask setup is working"
+   return render_template('index.html')
 
+@app.route('/', methods=['POST'])
+def upload_image():
+   return "post route is working, now write the logic to upload it into /static/uploads"
 
 if __name__ == "__main__":
-   app.run(debug=True)
+   app.run()
 
 
 
