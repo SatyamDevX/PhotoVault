@@ -8,6 +8,10 @@
 <body>
    <div>
       <h2>Select a photo to upload.</h2>
+      {% for message in get_flashed_messages() %}
+      <p>{{ message }}</p>
+      {% endfor %}
+
       <form action="/" method="post" enctype="multipart/form-data">
          <input type="file" name="file" required>
          <button type="submit">Upload</button>
