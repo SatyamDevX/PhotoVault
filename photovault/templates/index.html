@@ -17,6 +17,22 @@
          <button type="submit">Upload</button>
       </form>
    </div>
+
+   {% if file_info %}
+   <h2>File Information</h2>
+   <ul>
+      <li><strong>Filename:</strong> {{ file_info.filename }}</li>
+      <li><strong>Content-Type:</strong> {{ file_info.content_type }}</li>
+      <li><strong>Size (KB):</strong> {{ file_info.size_kb }}</li>
+      <li><strong>Size (MB):</strong> {{ file_info.size_mb }}</li>
+   </ul>
+   {% endif %}
+
+   
+   {% if filename %}
+      <h2>Uploaded Image:</h2>
+      <img src="{{ url_for('static', filename='uploads/' + filename) }}" width="300">
+   {% endif %}
    
 </body>
 </html>

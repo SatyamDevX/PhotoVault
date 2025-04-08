@@ -1,7 +1,10 @@
 from flask import Flask, render_template, request, flash, redirect
 from flask import abort
 
+from werkzeug.utils import secure_filename
 from werkzeug.exceptions import RequestEntityTooLarge
+
+import os
 
 app = Flask(__name__)
 
@@ -31,21 +34,32 @@ def upload_image():
 
    file = request.files.get('file')
 
-   if file:
-      content = file.read()
-      size_bytes = len(content)
+   #file information
+   content = file.read()
+   # size_bytes = len(content)
 
+   file.stream.seek(0)  # Reset stream if needed later
+   if file and allowed_file(file.filename):
+      filename = secure_filename(file.filename)
+      file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+      flash('File successfully uploaded')
+
+      # Get file size
+      size_bytes = os.path.getsize(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+      #file information
       file_info = {
          'filename': file.filename,
          'content_type': file.content_type,
          'size_kb': round(size_bytes / 1024, 2),
          'size_mb': round(size_bytes / (1024 * 1024), 2)
       }
+      return render_template('index.html', filename=filename, file_info=file_info)
 
-      file.stream.seek(0)  # Reset stream if needed later
-      return file_info
-   else:
-      return {'error': 'No file uploaded'}
+   flash('Allowed file types are: png, jpg, jpeg, gif')
+   return redirect(request.url)
+
+
 
 # Custom Error Handler for Large Files
 @app.errorhandler(RequestEntityTooLarge)
