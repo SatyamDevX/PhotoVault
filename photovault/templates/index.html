@@ -4,6 +4,9 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Index page for uploads</title>
+
+   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
 </head>
 <body>
    <div>
@@ -11,7 +14,6 @@
       {% for message in get_flashed_messages() %}
       <p>{{ message }}</p>
       {% endfor %}
-
       <form action="/" method="post" enctype="multipart/form-data">
          <input type="file" name="file" required>
          <button type="submit">Upload</button>
@@ -34,5 +36,32 @@
       <img src="{{ url_for('static', filename='uploads/' + filename) }}" width="300">
    {% endif %}
    
+
+   <script>
+      // Apply saved theme on page load
+      window.onload = function () {
+        if (localStorage.getItem("dark-mode") === "enabled") {
+          document.body.classList.add("dark-mode");
+        }
+      }
+    
+      // Toggle function with storage
+      function toggleDarkMode() {
+        const body = document.body;
+        const isDark = body.classList.toggle("dark-mode");
+    
+        // Save preference
+        if (isDark) {
+          localStorage.setItem("dark-mode", "enabled");
+        } else {
+          localStorage.setItem("dark-mode", "disabled");
+        }
+      }
+    </script>
+    
+
+   <button class="toggle-btn" onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
+
+    
 </body>
 </html>

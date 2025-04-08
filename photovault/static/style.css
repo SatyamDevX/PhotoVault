@@ -1,0 +1,86 @@
+body {
+   font-family: Arial, sans-serif;
+   text-align: center;
+   margin: 40px auto;
+   max-width: 700px;
+   padding: 20px;
+   background-color: #f9f9f9;
+   color: #222;
+   transition: all 0.3s ease;
+ }
+ 
+ /* Dark mode toggle via class */
+ body.dark-mode {
+   background-color: #121212;
+   color: #e0e0e0;
+ }
+ 
+ h1, h2 {
+   color: inherit;
+ }
+ 
+ form {
+   margin-bottom: 20px;
+ }
+ 
+ input[type="file"],
+ input[type="submit"] {
+   margin: 10px;
+   padding: 6px 12px;
+   border: 1px solid #ccc;
+   border-radius: 4px;
+   cursor: pointer;
+ }
+ 
+ ul {
+   list-style: none;
+   padding: 0;
+ }
+ 
+ ul li {
+   margin: 5px 0;
+   font-size: 16px;
+ }
+ 
+ img {
+   margin-top: 15px;
+   max-width: 100%;
+   height: auto;
+   border-radius: 10px;
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+   transition: transform 0.2s ease;
+ }
+ 
+ img:hover {
+   transform: scale(1.02);
+ }
+ 
+ .flash-message {
+   color: green;
+   font-weight: bold;
+   margin-bottom: 15px;
+ }
+ 
+ /* Optional dark mode toggle button */
+ .toggle-btn {
+   position: fixed;
+   top: 20px;
+   right: 20px;
+   padding: 8px 12px;
+   background-color: #333;
+   color: #fff;
+   border: none;
+   border-radius: 6px;
+   cursor: pointer;
+   z-index: 1000;
+   font-size: 14px;
+   opacity: 0.85;
+   transition: background-color 0.3s ease, opacity 0.3s ease;
+ }
+ 
+ .toggle-btn:hover {
+   background-color: #555;
+   opacity: 1;
+ }
+ 
+ 
